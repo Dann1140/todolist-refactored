@@ -35,8 +35,9 @@ textarea {
 
 textarea::placeholder {
   color: #a5a5a5;
-  font-family: "Montserrat";
+  font-family: "Unbounded";
   font-weight: 400;
+  font-size: 14px;
 }
 
 textarea:focus {
@@ -54,7 +55,7 @@ textarea:focus {
 .TodoForm-button {
   cursor: pointer;
   display: inline-block;
-  font-size: 20px;
+  font-size: 16px;
   color: #202329;
   font-weight: 500;
   width: 120px;
@@ -77,4 +78,10 @@ textarea:focus {
 
 .TodoForm-button--cancel {
   background: transparent;
+}
+
+@media (max-width: 480px) {
+  .TodoForm-button {
+    font-size: 12px;
+  }
 }
