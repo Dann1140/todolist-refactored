@@ -1,20 +1,19 @@
 import React from "react";
 import "./todoItem.css";
+import { AiFillCheckCircle, AiFillDelete } from "react-icons/ai";
 function TodoItem(props) {
   return (
-    <li className="icon todoItem">
-      <span
-        className={`complete-btn ${props.completed && "todoItem-c--completed"}`}
+    <li className="todoItem">
+      <AiFillCheckCircle
+        className={`icon complete-btn ${
+          props.completed && "todoItem-c--completed"
+        }`}
         onClick={props.onComplete}
-      >
-        C
-      </span>
+      />
       <p className={`todoItem-p ${props.completed && "todoItem-p--completed"}`}>
         {props.text}
       </p>
-      <span className="icon delete-btn" onClick={props.onDelete}>
-        X
-      </span>
+      <AiFillDelete className="icon delete-btn" onClick={props.onDelete} />
     </li>
   );
 }
