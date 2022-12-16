@@ -6,3 +6,7 @@
   align-self: center;
   background-color: #f8edeb;
 }
+
+.todoSearch:disabled {
+  opacity: 25%;
+}

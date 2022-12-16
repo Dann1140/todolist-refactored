@@ -10,6 +10,7 @@ import { CreateTodoButton } from "../createTodoButton";
 import { LoadingAnimation } from "../LoadingAnimation";
 import { ErrorAnimation } from "../errorAnimation";
 import { EmptyTodos } from "../emptyTodos";
+import { EmptySearchResults } from "../emptySearchResults";
 import { Modal } from "../modal";
 import "./App.css";
 
@@ -38,14 +39,30 @@ function App() {
           />
           Task Manager
         </h1>
-        <TodoCounter totalTodos={totalTodos} completedTodos={completedTodos} />
-        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+        <TodoCounter
+          loading={loading}
+          totalTodos={totalTodos}
+          completedTodos={completedTodos}
+        />
+        <TodoSearch
+          loading={loading}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
       </TodoHeader>
-      <TodoList>
-        {error && <ErrorAnimation />}
-        {loading && <LoadingAnimation />}
-        {!loading && !searchedTodos.length && <EmptyTodos />}
-        {searchedTodos.map((todo) => (
+      <TodoList
+        error={error}
+        loading={loading}
+        searchedTodos={searchedTodos}
+        totalTodos={totalTodos}
+        searchText={searchValue}
+        onError={() => <ErrorAnimation />}
+        onLoading={() => <LoadingAnimation />}
+        onEmptyTodos={() => <EmptyTodos />}
+        onEmptySearchResults={(searchText) => (
+          <EmptySearchResults searchText={searchText} />
+        )}
+        render={(todo) => (
           <TodoItem
             key={todo.text}
             text={todo.text}
@@ -53,8 +70,8 @@ function App() {
             onComplete={() => completeTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
           />
-        ))}
-      </TodoList>
+        )}
+      />
       {!!openModal && (
         <Modal>
           <TodoForm addTodo={addTodo} setOpenModal={setOpenModal} />
