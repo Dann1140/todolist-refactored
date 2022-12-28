@@ -12,6 +12,7 @@ import { ErrorAnimation } from "../errorAnimation";
 import { EmptyTodos } from "../emptyTodos";
 import { EmptySearchResults } from "../emptySearchResults";
 import { Modal } from "../modal";
+import { ChangeAlertWithStorageListener } from "../changeAlert";
 import "./App.css";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
     searchValue,
     setSearchValue,
     addTodo,
+    syncTodos,
   } = useTodos();
   return (
     <div className="container">
@@ -78,6 +80,7 @@ function App() {
         </Modal>
       )}
       <CreateTodoButton setOpenModal={setOpenModal} />
+      <ChangeAlertWithStorageListener syncTodos={syncTodos} />
     </div>
   );
 }
